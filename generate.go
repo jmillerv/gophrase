@@ -2,10 +2,10 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"math/rand"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -26,20 +26,31 @@ func getWord(key int) string {
 
 func makeKey() int {
 	rand.Seed(time.Now().UnixNano())
-	min := 1111 // lowest key number in assets/shortwords.json
-	max := 6666 // highest key number in assets/shortwords.json
-	key := rand.Intn((max - min) + min)
+	// min & max are determined by the upper and lower bound of a six sided die.
+	min := 1
+	max := 6
+	var keys []string
+	var numbers []int
+	for i := 1; len(numbers) <= 3; i++ {
+		number := rand.Intn((max - min + 1) + min)
+		if number > 0 {
+			numbers = append(numbers, number)
+		}
+	}
+	for _, n := range numbers{
+		keys = append(keys, strconv.Itoa(n))
+	}
+	key, _ := strconv.Atoi(strings.Join(keys[:], ""))
 	return key
 }
 
 func GeneratePassword(wordCount int) string {
 	var password []string
 	var key int
-	for i := 0; i < wordCount; i++ {
+	for i := 1; i <= wordCount; i++ {
 		key = makeKey()
 		word := getWord(key)
 		password = append(password, word)
-		fmt.Println(password)
 	}
 	return strings.Join(password[:], "")
 }
