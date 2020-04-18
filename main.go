@@ -22,7 +22,7 @@ func main() {
 	
 		{{range .Authors}}{{ . }}{{end}} {{end}}{{if .Commands}} {{.Version}}{{end}}
 	`
-	app.Commands = Commands
+	app.Commands = Commands // this is weird because go build tells me the opposite.
 	err := app.Run(os.Args)
 	if err != nil {
 		log.Fatal(err)
