@@ -12,7 +12,7 @@ import (
 
 func getWord(key int) string {
 	words := make(map[int]string)
-	corpus, err := ioutil.ReadFile("./assets/shortwords.json")
+	corpus, err := ioutil.ReadFile("./assets/eff_short_wordlist_2_0.json")
 	if err != nil {
 		log.Println("Error reading json file")
 	}
