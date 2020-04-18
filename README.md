@@ -19,5 +19,4 @@ interested I woudl recommend reading the [EFF's post](https://www.eff.org/deepli
 3. Common character substitution (a=>@, i=1) 
 4. Random capitalization
 5. Numbers
-6. Import custom corpus
 
