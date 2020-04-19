@@ -9,8 +9,7 @@ Ex: `gophrase 5`
 
 ### Corpus 
 
-This passphrase generator currently relies on the Electronic Frontier Foundation's shortword list that uses only words that have unique three-character prefixes. If you're
-interested I woudl recommend reading the [EFF's post](https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases) on their word lists. 
+This passphrase generator currently relies on the Electronic Frontier Foundation's shortword list that uses only words that have unique three-character prefixes. If you're interested I would recommend reading the [EFF's post](https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases) on their word lists. 
 
 ### Roadmap
 
@@ -19,5 +18,4 @@ interested I woudl recommend reading the [EFF's post](https://www.eff.org/deepli
 3. Common character substitution (a=>@, i=1) 
 4. Random capitalization
 5. Numbers
-6. Import custom corpus
 
