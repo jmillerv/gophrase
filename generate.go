@@ -14,11 +14,9 @@ func makeKey() int {
 		rand.Seed(time.Now().UnixNano())
 	})
 	die := []int{1,2,3,4,5,6}
-	a := die[rand.Intn(len(die))] * 1000
-	b := die[rand.Intn(len(die))] * 100
-	c := die[rand.Intn(len(die))] * 10
-	d := die[rand.Intn(len(die))]
-	key += a+b+c+d
+	for i := 0; i < 4; i++ {
+		key = (key*10) + die[rand.Intn(len(die))]
+	}
 	return key
 }
 
