@@ -2,36 +2,30 @@ package main
 
 import (
 	"math/rand"
-	"strconv"
 	"strings"
+	"sync"
 	"time"
 )
 
+var onlyOnce sync.Once
 func makeKey() int {
-	rand.Seed(time.Now().UnixNano())
-	// min & max are determined by the upper and lower bound of a six sided die.
-	min := 1
-	max := 6
-	var keys []string
-	var numbers []int
-	for i := 1; len(numbers) <= 3; i++ {
-		number := rand.Intn((max - min + 1) + min)
-		if number > 0 {
-			numbers = append(numbers, number)
-		}
-	}
-	for _, n := range numbers {
-		keys = append(keys, strconv.Itoa(n))
-	}
-	key, _ := strconv.Atoi(strings.Join(keys[:], ""))
+	var key int
+	onlyOnce.Do(func(){
+		rand.Seed(time.Now().UnixNano())
+	})
+	die := []int{1,2,3,4,5,6}
+	a := die[rand.Intn(len(die))] * 1000
+	b := die[rand.Intn(len(die))] * 100
+	c := die[rand.Intn(len(die))] * 10
+	d := die[rand.Intn(len(die))]
+	key += a+b+c+d
 	return key
 }
 
 func GeneratePassword(wordCount int) string {
 	var password []string
-	var key int
 	for i := 1; i <= wordCount; i++ {
-		key = makeKey()
+		key := makeKey()
 		word := GetWord(key)
 		password = append(password, word)
 	}
