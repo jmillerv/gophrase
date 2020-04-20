@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/gophrase/internal"
 	"github.com/urfave/cli"
 	"log"
 	"os"
@@ -8,10 +9,10 @@ import (
 
 func main() {
 	app := *cli.NewApp()
-	app.Name = APP_NAME
-	app.Usage = APP_USAGE
-	app.UsageText = APP_USAGETEXT
-	app.Version = APP_VERSION
+	app.Name = internal.APP_NAME
+	app.Usage = internal.APP_USAGE
+	app.UsageText = internal.APP_USAGETEXT
+	app.Version = internal.APP_VERSION
 	app.HideHelp = false
 	app.HideVersion = false
 
@@ -22,7 +23,7 @@ func main() {
 	
 		{{range .Authors}}{{ . }}{{end}} {{end}}{{if .Commands}} {{.Version}}{{end}}
 	`
-	app.Commands = Commands // this is weird because go build tells me the opposite.
+	app.Commands = internal.Commands // this is weird because go build tells me the opposite.
 	err := app.Run(os.Args)
 	if err != nil {
 		log.Fatal(err)

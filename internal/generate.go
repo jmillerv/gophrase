@@ -1,4 +1,4 @@
-package main
+package internal
 
 import (
 	"math/rand"
@@ -8,14 +8,15 @@ import (
 )
 
 var onlyOnce sync.Once
+
 func makeKey() int {
 	var key int
-	onlyOnce.Do(func(){
+	onlyOnce.Do(func() {
 		rand.Seed(time.Now().UnixNano())
 	})
-	die := []int{1,2,3,4,5,6}
+	die := []int{1, 2, 3, 4, 5, 6}
 	for i := 0; i < 4; i++ {
-		key = (key*10) + die[rand.Intn(len(die))]
+		key = (key * 10) + die[rand.Intn(len(die))]
 	}
 	return key
 }

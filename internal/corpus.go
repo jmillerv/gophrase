@@ -1,4 +1,4 @@
-package main
+package internal
 
 import (
 	"encoding/json"
@@ -7,7 +7,7 @@ import (
 )
 
 func getCorpus() []byte {
-	box := packr.New("assets", "./assets")
+	box := packr.New("assets", "../assets")
 	fileLocation, err := box.Find("eff_short_wordlist_2_0.json")
 	if err != nil {
 		log.Fatal(err)
