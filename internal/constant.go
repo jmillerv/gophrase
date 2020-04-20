@@ -1,4 +1,4 @@
-package main
+package internal
 
 const APP_NAME = "Go Phrase"
 const APP_USAGE = "CLI for generating secure, memorable passwords"
