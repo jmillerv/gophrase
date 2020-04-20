@@ -9,7 +9,7 @@ Ex: `gophrase 5`
 
 ### Corpus 
 
-This passphrase defaults to the Electronic Frontier Foundation's shortword list that uses only words that have unique three-character prefixes. If you're interested I would recommend reading the [EFF's post](https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases) on their word lists. 
+This passphrase defaults to the Electronic Frontier Foundation's short wordlist that uses only words that have unique three-character prefixes. If you're interested I would recommend reading the [EFF's post](https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases) on their word lists. 
 There are 4 lists to choose from, if you opt for the Reinhold list it's possible you will have numbers in the generated password. 
 If you don't want numbers or special characters, the other lists should work for you.
 
