@@ -29,15 +29,15 @@ func GetWord(key int, wordlist string) string {
 func setWordList(wordlist string) string {
 	// This is organized by my personal preference.
 	switch list := wordlist; list {
-		case "a":
-			return EFF_SHORT_2
-		case "b":
-			return EFF_SHORT_1
-		case "c":
-			return EFF_LARGE
-		case "d":
-			return REINHOLD
-		default:
-			return EFF_SHORT_2
+	case "a":
+		return EFF_SHORT_2
+	case "b":
+		return EFF_SHORT_1
+	case "c":
+		return EFF_LARGE
+	case "d":
+		return REINHOLD
+	default:
+		return EFF_SHORT_2
 	}
 }
