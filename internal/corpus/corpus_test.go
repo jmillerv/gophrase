@@ -4,7 +4,7 @@ import (
 	"github.com/gophrase/internal"
 	"testing"
 )
-
+// TODO write TestGetWordList and test the bytes
 func TestGetWord(t *testing.T) {
 	key := 2215
 	wordlist := "a"
