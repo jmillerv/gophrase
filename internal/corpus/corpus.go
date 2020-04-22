@@ -7,7 +7,7 @@ import (
 	"log"
 )
 
-func getCorpus(wordlist string) []byte {
+func getWordList(wordlist string) []byte {
 	box := packr.New("assets", "../assets")
 	fileLocation, err := box.Find(setWordList(wordlist))
 	if err != nil {
@@ -18,7 +18,7 @@ func getCorpus(wordlist string) []byte {
 
 func GetWord(key int, wordlist string) string {
 	words := make(map[int]string)
-	corpus := getCorpus(wordlist)
+	corpus := getWordList(wordlist)
 	err := json.Unmarshal(corpus, &words)
 	if err != nil {
 		log.Fatal(err)
