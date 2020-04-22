@@ -8,7 +8,7 @@ import (
 )
 
 func getWordList(wordlist string) []byte {
-	box := packr.New("assets", "../assets")
+	box := packr.New("assets", "../../assets")
 	fileLocation, err := box.Find(setWordList(wordlist))
 	if err != nil {
 		log.Fatal(err)
