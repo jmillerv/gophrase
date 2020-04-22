@@ -5,7 +5,17 @@ import (
 	"testing"
 )
 
-func TestGetWordList(t *testing.T) {
+func TestGetWord(t *testing.T) {
+	key := 2215
+	wordlist := "a"
+	word := GetWord(key, wordlist)
+	if word != "dandelion" {
+		t.Errorf("GetWord() failed, expected key 2215 to get 'dandelion', got %s", word)
+	}
+
+}
+
+func TestSetWordList(t *testing.T) {
 	type tables struct {
 		first  string
 		second string
@@ -31,12 +41,4 @@ func TestGetWordList(t *testing.T) {
 	if  setWordList(testValues.fifth) != internal.EFF_SHORT_2 {
 		t.Errorf("setWordList() failed expected 'eff_short_wordlist_2_0.json', but got %s", setWordList(testValues.fifth))
 	}
-}
-
-func testGetWord(t *testing.T) {
-
-}
-
-func testSetWordList(t *testing.T) {
-
 }
