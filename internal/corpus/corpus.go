@@ -1,13 +1,14 @@
-package internal
+package corpus
 
 import (
 	"encoding/json"
 	"github.com/gobuffalo/packr/v2"
+	"github.com/gophrase/internal"
 	"log"
 )
 
-func getCorpus(wordlist string) []byte {
-	box := packr.New("assets", "../assets")
+func getWordList(wordlist string) []byte {
+	box := packr.New("assets", "../../assets")
 	fileLocation, err := box.Find(setWordList(wordlist))
 	if err != nil {
 		log.Fatal(err)
@@ -17,7 +18,7 @@ func getCorpus(wordlist string) []byte {
 
 func GetWord(key int, wordlist string) string {
 	words := make(map[int]string)
-	corpus := getCorpus(wordlist)
+	corpus := getWordList(wordlist)
 	err := json.Unmarshal(corpus, &words)
 	if err != nil {
 		log.Fatal(err)
@@ -30,14 +31,14 @@ func setWordList(wordlist string) string {
 	// This is organized by my personal preference.
 	switch list := wordlist; list {
 	case "a":
-		return EFF_SHORT_2
+		return internal.EFF_SHORT_2
 	case "b":
-		return EFF_SHORT_1
+		return internal.EFF_SHORT_1
 	case "c":
-		return EFF_LARGE
+		return internal.EFF_LARGE
 	case "d":
-		return REINHOLD
+		return internal.REINHOLD
 	default:
-		return EFF_SHORT_2
+		return internal.EFF_SHORT_2
 	}
 }

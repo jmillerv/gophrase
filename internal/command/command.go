@@ -1,14 +1,15 @@
-package internal
+package command
 
 import (
 	"fmt"
+	"github.com/gophrase/internal/generate"
 	"github.com/urfave/cli"
 	"strconv"
 )
 
 var Commands = []cli.Command{
 	{
-		Name:    "GeneratePassword",
+		Name:    "Password",
 		Aliases: []string{"gen"},
 		Usage:   "gen <int>",
 		Action: func(c *cli.Context) error {
@@ -17,7 +18,7 @@ var Commands = []cli.Command{
 			if wl == "" {
 				wl = "a"
 			}
-			password := GeneratePassword(i, wl)
+			password := generate.Password(i, wl)
 			fmt.Println(password)
 			return nil
 		},

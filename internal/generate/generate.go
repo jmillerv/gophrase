@@ -1,6 +1,7 @@
-package internal
+package generate
 
 import (
+	"github.com/gophrase/internal/corpus"
 	"math/rand"
 	"strings"
 	"sync"
@@ -9,9 +10,9 @@ import (
 
 var onlyOnce sync.Once
 
-func makeKey(wordList string) int {
+func key(wordList string) int {
 	var key int
-	keySize := setKeySize(wordList)
+	keySize := keySize(wordList)
 	onlyOnce.Do(func() {
 		rand.Seed(time.Now().UnixNano())
 	})
@@ -22,7 +23,7 @@ func makeKey(wordList string) int {
 	return key
 }
 
-func setKeySize(wordList string) int {
+func keySize(wordList string) int {
 	if wordList == "a" || wordList == "b" {
 		return 4
 	} else {
@@ -30,11 +31,11 @@ func setKeySize(wordList string) int {
 	}
 }
 
-func GeneratePassword(wordCount int, wordList string) string {
+func Password(wordCount int, wordList string) string {
 	var password []string
 	for i := 1; i <= wordCount; i++ {
-		key := makeKey(wordList)
-		word := GetWord(key, wordList)
+		key := key(wordList)
+		word := corpus.GetWord(key, wordList)
 		password = append(password, word)
 	}
 	return strings.Join(password[:], "")

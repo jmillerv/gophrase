@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gophrase/internal"
+	"github.com/gophrase/internal/command"
 	"github.com/urfave/cli"
 	"log"
 	"os"
@@ -16,7 +17,7 @@ func main() {
 	app.HideHelp = false
 	app.HideVersion = false
 
-	app.Commands = internal.Commands // this is weird because go build tells me the opposite.
+	app.Commands = command.Commands // this is weird because go build tells me the opposite.
 	err := app.Run(os.Args)
 	if err != nil {
 		log.Fatal(err)
