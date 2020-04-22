@@ -1,7 +1,8 @@
-package internal
+package command
 
 import (
 	"fmt"
+	"github.com/gophrase/internal/generate"
 	"github.com/urfave/cli"
 	"strconv"
 )
@@ -17,7 +18,7 @@ var Commands = []cli.Command{
 			if wl == "" {
 				wl = "a"
 			}
-			password := GeneratePassword(i, wl)
+			password := generate.GeneratePassword(i, wl)
 			fmt.Println(password)
 			return nil
 		},

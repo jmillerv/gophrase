@@ -1,6 +1,7 @@
-package internal
+package generate
 
 import (
+	"github.com/gophrase/internal/corpus"
 	"math/rand"
 	"strings"
 	"sync"
@@ -34,7 +35,7 @@ func GeneratePassword(wordCount int, wordList string) string {
 	var password []string
 	for i := 1; i <= wordCount; i++ {
 		key := makeKey(wordList)
-		word := GetWord(key, wordList)
+		word := corpus.GetWord(key, wordList)
 		password = append(password, word)
 	}
 	return strings.Join(password[:], "")
