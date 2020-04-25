@@ -1,8 +1,10 @@
 package generate
 
 import (
+	"fmt"
 	"math"
 	"testing"
+	"unicode"
 )
 
 func TestKeySize (t *testing.T){
@@ -41,14 +43,40 @@ func TestKey (t *testing.T){
 	}
 }
 
-func TestPassword(t *testing.T) {
-	passphrase := Password(3, "d")
+func TestBasicPassword(t *testing.T) {
+	passphrase := Password(3, "d", false)
 	if len(passphrase) <= 0 {
 		t.Errorf("Password() failed expected string, got empty return")
+	}
+}
+
+func TestCapitalPassword(t *testing.T){
+	passphrase := Password(5, "a", true)
+	runes := []rune(passphrase)
+	var results []string
+	fmt.Println(passphrase)
+	for i := 0; i < len(runes); i++ {
+		if unicode.IsUpper(runes[i]) == true {
+			results = append(results,"true")
+		} else {
+			results = append(results,"false")
+		}
+	}
+	if !contains(results, "true"){
+		t.Errorf("Capital Password failed expected uppercase letter got %s", passphrase)
 	}
 }
 
 func getDigit(num, length int) int {
 	r := num % int(math.Pow(10, float64(length)))
 	return r / int(math.Pow(10, float64(length-1)))
+}
+
+func contains(arr []string, str string) bool {
+	for _, a := range arr {
+		if a == str {
+			return true
+		}
+	}
+	return false
 }
