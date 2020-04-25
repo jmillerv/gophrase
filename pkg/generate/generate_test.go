@@ -5,9 +5,9 @@ import (
 	"testing"
 )
 
-func TestKeySize (t *testing.T){
+func TestKeySize(t *testing.T) {
 	type tables struct {
-		first string
+		first  string
 		second string
 	}
 
@@ -22,9 +22,9 @@ func TestKeySize (t *testing.T){
 	}
 }
 
-func TestKey (t *testing.T){
+func TestKey(t *testing.T) {
 	type tables struct {
-		first string
+		first  string
 		second string
 	}
 
