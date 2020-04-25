@@ -2,7 +2,7 @@ package command
 
 import (
 	"fmt"
-	"github.com/gophrase/internal/generate"
+	"github.com/gophrase/pkg/generate"
 	"github.com/urfave/cli"
 	"strconv"
 )

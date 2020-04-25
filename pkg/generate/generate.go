@@ -1,7 +1,7 @@
 package generate
 
 import (
-	"github.com/gophrase/internal/corpus"
+	"github.com/gophrase/pkg/corpus"
 	"math/rand"
 	"strings"
 	"sync"
