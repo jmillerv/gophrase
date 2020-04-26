@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-var Commands = []cli.Command{
+var Commands = []*cli.Command{
 	{
 		Name:    "GeneratePassword",
 		Aliases: []string{"gen"},
