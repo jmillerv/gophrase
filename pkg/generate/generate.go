@@ -6,33 +6,49 @@ import (
 	"strings"
 	"time"
 )
-type Params struct{
-	WordCount int
-	WordList string
-	Capitals bool
+
+type Params struct {
+	WordCount    int
+	WordList     string
+	Capitals     bool
+	SpecialChars bool
 }
+
 // TODO There is a chance this doesn't capitalize. Need to make a validator.
-func capitals(password []string) string {
+func Capitals(passphrase []string) string {
 	rand.Seed(time.Now().UnixNano())
 	var opts int
-	capsPassword := strings.Join(password[:], "")
-	for i := 0; i < len(capsPassword); i++ {
+	capsPassphrase := strings.Join(passphrase[:], "")
+	for i := 0; i < len(capsPassphrase); i++ {
 		opts = choice()
 		if opts == 1 {
-			letter := strings.ToUpper(string(capsPassword[i]))
-			capsPassword = strings.Replace(capsPassword, string(capsPassword[i]), letter, i)
+			letter := strings.ToUpper(string(capsPassphrase[i]))
+			capsPassphrase = strings.Replace(capsPassphrase, string(capsPassphrase[i]), letter, i)
 		} else {
-			letter := strings.ToLower(string(capsPassword[i]))
-			capsPassword = strings.Replace(capsPassword, string(capsPassword[i]), letter, i)
+			letter := strings.ToLower(string(capsPassphrase[i]))
+			capsPassphrase = strings.Replace(capsPassphrase, string(capsPassphrase[i]), letter, i)
 		}
 	}
-	return capsPassword
+	return capsPassphrase
 }
 
 func choice() int {
 	rand.Seed(time.Now().UnixNano())
-	opts := []int{1,2,3,4}
+	opts := []int{1, 2, 3, 4}
 	return opts[rand.Intn(len(opts))]
+}
+
+func HandleFlags(p *Params, passphrase []string) string {
+	var returnValue string
+	if p.SpecialChars == true {
+		passphrase = SpecialCharacters(passphrase)
+
+	}
+	returnValue = strings.Join(passphrase[:], "")
+	if p.Capitals == true {
+		returnValue = Capitals(passphrase)
+	}
+	return returnValue
 }
 
 func key(wordList string) int {
@@ -55,16 +71,28 @@ func keySize(wordList string) int {
 }
 
 func Password(p *Params) string {
-	var password []string
+	var passphrase []string
 	for i := 1; i <= p.WordCount; i++ {
 		key := key(p.WordList)
 		word := corpus.GetWord(key, p.WordList)
-		password = append(password, word)
+		passphrase = append(passphrase, word)
 	}
-	returnValue := strings.Join(password[:], "")
-	if p.Capitals == true {
-		returnValue = capitals(password)
+	returnValue := strings.Join(passphrase[:], "")
+	if p.Capitals == true || p.SpecialChars == true {
+		returnValue = HandleFlags(p, passphrase)
 	}
+
 	return returnValue
 }
 
+func SpecialCharacters(passphrase []string) []string {
+	rand.Seed(time.Now().UnixNano())
+	passphrase = append(passphrase, "")
+	charCount := rand.Intn(len(passphrase)) + 1
+	for i := 0; i < charCount; i++ {
+		char := corpus.GetSpecialChar()
+		passphrase = append(passphrase, char)
+	}
+	rand.Shuffle(len(passphrase), func(i, j int) { passphrase[i], passphrase[j] = passphrase[j], passphrase[i] })
+	return passphrase
+}

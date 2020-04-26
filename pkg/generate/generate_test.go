@@ -2,7 +2,10 @@ package generate
 
 import (
 	"fmt"
+	"github.com/gophrase/pkg/corpus"
 	"math"
+	"regexp"
+	"strings"
 	"testing"
 	"unicode"
 )
@@ -44,26 +47,58 @@ func TestKey(t *testing.T) {
 }
 
 func TestBasicPassword(t *testing.T) {
-	passphrase := Password(3, "d", false)
+	p := Params{
+		WordCount: 5,
+		WordList:  "a",
+		Capitals:  false,
+	}
+	passphrase := Password(&p)
 	if len(passphrase) <= 0 {
 		t.Errorf("Password() failed expected string, got empty return")
 	}
 }
 
-func TestCapitalPassword(t *testing.T){
-	passphrase := Password(5, "a", true)
+func TestCapitalPassword(t *testing.T) {
+	p := Params{
+		WordCount: 5,
+		WordList:  "a",
+		Capitals:  true,
+	}
+	passphrase := Password(&p)
 	runes := []rune(passphrase)
 	var results []string
-	fmt.Println(passphrase)
 	for i := 0; i < len(runes); i++ {
 		if unicode.IsUpper(runes[i]) == true {
-			results = append(results,"true")
+			results = append(results, "true")
 		} else {
-			results = append(results,"false")
+			results = append(results, "false")
 		}
 	}
-	if !contains(results, "true"){
+	if !contains(results, "true") {
 		t.Errorf("Capital Password failed expected uppercase letter got %s", passphrase)
+	}
+}
+
+func TestSpecialCharacters(t *testing.T) {
+	p := Params{
+		WordCount: 5,
+		WordList:  "a",
+		Capitals:  false,
+	}
+	var passphrase []string
+	for i := 1; i <= p.WordCount; i++ {
+		key := key(p.WordList)
+		word := corpus.GetWord(key, p.WordList)
+		passphrase = append(passphrase, word)
+	}
+	specPhrase := SpecialCharacters(passphrase)
+	specString := strings.Join(specPhrase[:], "")
+	var isStringAlphanumeric = regexp.MustCompile(`^[^A-Za-z0-9]+$`).MatchString
+	// use negative matching here because I don't want to look up regex stuff right now
+	fmt.Println(specString)
+	if isStringAlphanumeric(specString) == true {
+
+		t.Errorf("Special Characters failed expected special character got %s", specString)
 	}
 }
 

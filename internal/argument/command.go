@@ -7,14 +7,13 @@ import (
 	"strconv"
 )
 
-
-
 var Commands = []*cli.Command{
 	{
 		Name:    "generate",
 		Aliases: []string{"gen"},
 		Usage:   "gen [int]",
 		Action: func(c *cli.Context) error {
+			// TODO input validator to clean up section
 			p := generate.Params{}
 			p.WordCount, _ = strconv.Atoi(c.Args().Get(0))
 			if p.WordCount == 0 {
@@ -29,6 +28,11 @@ var Commands = []*cli.Command{
 			} else {
 				p.Capitals = false
 			}
+			if c.Bool("special") {
+				p.SpecialChars = true
+			} else {
+				p.SpecialChars = false
+			}
 			password := generate.Password(&p)
 			fmt.Println(password)
 			return nil
@@ -38,6 +42,11 @@ var Commands = []*cli.Command{
 				Name:    "capital",
 				Aliases: []string{"c"},
 				Usage:   "Add random capitalization to your passwords",
+			},
+			&cli.BoolFlag{
+				Name:    "special",
+				Aliases: []string{"s"},
+				Usage:   "Add random special characters to your passwords",
 			},
 		},
 	},
