@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gophrase/internal"
-	"github.com/gophrase/internal/command"
+	"github.com/gophrase/internal/argument"
 	"github.com/urfave/cli/v2"
 	"log"
 	"os"
@@ -16,8 +16,7 @@ func main() {
 	app.Version = internal.APP_VERSION
 	app.HideHelp = false
 	app.HideVersion = false
-	app.Flags = command.PasswordFlags
-	app.Commands = command.Commands
+	app.Commands = argument.Commands
 	err := app.Run(os.Args)
 	if err != nil {
 		log.Fatal(err)

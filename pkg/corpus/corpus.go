@@ -5,10 +5,33 @@ import (
 	"github.com/gobuffalo/packr/v2"
 	"github.com/gophrase/internal"
 	"log"
+	"math/rand"
+	"time"
 )
 
+var box = packr.New("assets", "../../assets")
+
+func getSpecialCharList() []byte {
+	fileLocation, err := box.Find(internal.CHARACTERS)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return fileLocation
+}
+
+func GetSpecialChar() string {
+	rand.Seed(time.Now().UnixNano())
+	chars := make(map[int]string)
+	corpus := getSpecialCharList()
+	err := json.Unmarshal(corpus, &chars)
+	if err != nil {
+		log.Fatal(err)
+	}
+	key := rand.Intn(len(chars)) + 1
+	return chars[key]
+}
+
 func getWordList(wordlist string) []byte {
-	box := packr.New("assets", "../../assets")
 	fileLocation, err := box.Find(setWordList(wordlist))
 	if err != nil {
 		log.Fatal(err)
