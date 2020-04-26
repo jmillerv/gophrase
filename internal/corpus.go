@@ -22,6 +22,5 @@ func GetWord(key int) string {
 	if err != nil {
 		log.Fatal(err)
 	}
-	word := words[key]
-	return word
+	return words[key]
 }
