@@ -1,2 +1,2 @@
 *.idea
-*/gophrase/gophrase
+*cmd/gophrase/gophrase
