@@ -3,6 +3,7 @@ package argument
 import (
 	"fmt"
 	"github.com/gophrase/pkg/corpus"
+	"github.com/gophrase/pkg/entropy"
 	"github.com/gophrase/pkg/generate"
 	"github.com/urfave/cli/v2"
 	"strconv"
@@ -40,7 +41,7 @@ var Commands = []*cli.Command{
 				p.Numbers = false
 			}
 			password := generate.Password(&p)
-			fmt.Println(password)
+			entropy.PrintEntropy(password)
 			return nil
 		},
 		Flags: []cli.Flag{

@@ -7,7 +7,17 @@ from a list of words using only dice. The original creator was Arnold Reinhold. 
 way possess about 12.9 bits of entropy per word if the attacker knows Diceware was the method used, the list, 
 and the word length. Less information can yield higher passphrase entropy. 
 
-### Usage 
+### About sEntropy
+Entropy is essentially a measure of how unpredictable a password is. 
+
+The below chart is a good metric of password strength based on entropy.
+>< 28 bits = Very Weak; might keep out family members  
+ 28 - 35 bits = Weak; should keep out most people, often good for desktop login passwords  
+ 36 - 59 bits = Reasonable; fairly secure passwords for network and company   
+ 60 - 127 bits = Strong; can be good for guarding financial information  
+ 128+ bits = Very Strong; often overkill ([Pleacher](https://www.pleacher.com/mp/mlessons/algebra/entropy.html))
+
+### Gophrase Usage 
 Call the bin file and pass a number that represents the number of words you would like your phrase to be. 
 Gophrase defaults to a three word passphrase with no capitalization, special characters or numbers.
 
@@ -44,6 +54,7 @@ If you don't want numbers or special characters, the other lists should work for
 
 ### Further Reading
 https://theworld.com/~reinhold/diceware.html
+https://www.pleacher.com/mp/mlessons/algebra/entropy.html
 
 ### Usage in Production Environments
 This is the use at your own risk warning. As this program uses the math/rand package and not the crypto/rand package. As such I would avoid production 
