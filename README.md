@@ -66,5 +66,4 @@ Replacing the math/rand with crypto/rand isn't out of the picture, it's just not
 ### Roadmap
 
 1. CLI validation
-2. Entropy output
-3. Defaults for wordlist and word count
+2. Defaults for wordlist and word count
