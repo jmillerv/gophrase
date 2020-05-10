@@ -2,6 +2,7 @@ package argument
 
 import (
 	"fmt"
+	"github.com/gophrase/internal/config"
 	"github.com/gophrase/pkg/corpus"
 	"github.com/gophrase/pkg/entropy"
 	"github.com/gophrase/pkg/generate"
@@ -19,11 +20,11 @@ var Commands = []*cli.Command{
 			p := generate.Params{}
 			p.WordCount, _ = strconv.Atoi(c.Args().Get(0))
 			if p.WordCount == 0 {
-				p.WordCount = 3
+				p.WordCount = config.Defaults.WordCount
 			}
 			p.WordList = c.Args().Get(1)
 			if p.WordList == "" {
-				p.WordList = "a"
+				p.WordList = config.Defaults.WordList
 			}
 			if c.Bool("capital") {
 				p.Capitals = true
@@ -68,6 +69,15 @@ var Commands = []*cli.Command{
 		Usage:   "View the wordlist options for passphrase generation",
 		Action: func(c *cli.Context) error {
 			fmt.Print(string(corpus.PrintWordListOptions()))
+			return nil
+		},
+	},
+	{
+		Name:    "List Defaults",
+		Aliases: []string{"ld"},
+		Usage:   "Set default options for word count and word list",
+		Action: func(c *cli.Context) error {
+			config.PrintConfigDefaults(config.Defaults)
 			return nil
 		},
 	},

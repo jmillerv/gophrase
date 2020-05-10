@@ -2,17 +2,15 @@ package corpus
 
 import (
 	"encoding/json"
-	"github.com/gobuffalo/packr/v2"
 	"github.com/gophrase/internal"
+	"github.com/gophrase/internal/config"
 	"log"
 	"math/rand"
 	"time"
 )
 
-var box = packr.New("assets", "../../assets")
-
 func getSpecialCharList() []byte {
-	fileLocation, err := box.Find(internal.CHARACTERS)
+	fileLocation, err := config.Assets.Find(internal.CHARACTERS)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -32,7 +30,7 @@ func GetSpecialChar() string {
 }
 
 func getWordList(wordlist string) []byte {
-	fileLocation, err := box.Find(setWordList(wordlist))
+	fileLocation, err := config.Assets.Find(setWordList(wordlist))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -62,12 +60,12 @@ func setWordList(wordlist string) string {
 	case "d":
 		return internal.REINHOLD
 	default:
-		return internal.EFF_SHORT_2
+		return config.Defaults.WordList
 	}
 }
 
 func PrintWordListOptions() []byte {
-	fileLocation, err := box.Find(internal.LIST_OPTIONS)
+	fileLocation, err := config.Assets.Find(internal.LIST_OPTIONS)
 	if err != nil {
 		log.Fatal(err)
 	}

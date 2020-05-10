@@ -3,12 +3,14 @@ package main
 import (
 	"github.com/gophrase/internal"
 	"github.com/gophrase/internal/argument"
+	"github.com/gophrase/internal/config"
 	"github.com/urfave/cli/v2"
 	"log"
 	"os"
 )
 
 func main() {
+	config.LoadConfigDefaults()
 	app := *cli.NewApp()
 	app.Name = internal.APP_NAME
 	app.Usage = internal.APP_USAGE
