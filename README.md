@@ -7,7 +7,7 @@ from a list of words using only dice. The original creator was Arnold Reinhold. 
 way possess about 12.9 bits of entropy per word if the attacker knows Diceware was the method used, the list, 
 and the word length. Less information can yield higher passphrase entropy. 
 
-### About sEntropy
+### About Entropy
 Entropy is essentially a measure of how unpredictable a password is. 
 
 The below chart is a good metric of password strength based on entropy.
