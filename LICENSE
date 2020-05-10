@@ -163,3 +163,17 @@ whether future versions of the GNU Lesser General Public License shall
 apply, that proxy's public statement of acceptance of any version is
 permanent authorization for you to choose that version for the
 Library.
+
+This project distribution includes the following licensed software. Reuse of this software requires compliance with the associated license:
+urfave/cli/v2: https://github.com/urfave/cli/blob/master/v2/LICENSE,MIT
+russross/blackfriday/v2: https://github.com/russross/blackfriday/blob/master/v2/LICENSE.txt,BSD-2-Clause
+gobuffalo/packr/v2: https://github.com/gobuffalo/packr/blob/master/v2/LICENSE.txt,MIT
+sirupsen/logrus: https://github.com/sirupsen/logrus/blob/master/LICENSE,MIT
+golang.org/x/crypto/ssh/terminal,Unknown,BSD-3-Clause
+markbates/errx:https://github.com/markbates/errx/blob/master/LICENSE,MIT
+markbates/oncer: https://github.com/markbates/oncer/blob/master/LICENSE,MIT
+markbates/safe: https://github.com/markbates/safe/blob/master/LICENSE,MIT
+nbutton23/zxcvbn-go: https://github.com/nbutton23/zxcvbn-go/blob/master/LICENSE.txt,MIT
+shurcooL/sanitized_anchor_name: https://github.com/shurcooL/sanitized_anchor_name/blob/master/LICENSE,MIT
+karrick/godirwalk: https://github.com/karrick/godirwalk/blob/master/LICENSE,BSD-2-Clause
+cpuguy83/go-md2man/v2/md2man: https://github.com/cpuguy83/go-md2man/blob/master/v2/md2man/LICENSE.md,MIT
