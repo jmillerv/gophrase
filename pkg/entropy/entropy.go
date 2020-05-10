@@ -5,11 +5,13 @@ import (
 	"github.com/nbutton23/zxcvbn-go"
 )
 
-//func checkEntropyRating(entropy float64) string {
-//	return ""
-//}
+// Initially I wrote my own entropy calculator but found this package that's based on a Dropbox
+// it's more conservative in its estimation than my original and those I found online. So, it's included here.
 
 func PrintEntropy(passphrase string ) {
 	entropy := zxcvbn.PasswordStrength(passphrase,nil)
-	fmt.Print(entropy)
+	fmt.Println("Password: " + entropy.Password)
+	fmt.Println("Entropy: ", entropy.Entropy)
+	fmt.Println("Time to Crack " + entropy.CrackTimeDisplay)
+	fmt.Println("Score: ", entropy.Score, "/ 4")
 }
