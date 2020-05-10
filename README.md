@@ -57,9 +57,7 @@ https://theworld.com/~reinhold/diceware.html
 https://www.pleacher.com/mp/mlessons/algebra/entropy.html
 
 ### Usage in Production Environments
-This is the use at your own risk warning. As this program uses the math/rand package and not the crypto/rand package. As such I would avoid production 
-environments because of the possibility of being subject to a time attack. That being said security is all about 
-threat models, and most users who just need a quick simple password aren't being actively targeted on their machines. 
+This is the use at your own risk warning. As this program uses the math/rand package and not the crypto/rand package, I would avoid production environments because of the possibility of being subject to a time attack. That being said security is all about threat models, and most users who just need a quick simple password aren't being actively targeted on their machines. 
 
 Replacing the math/rand with crypto/rand isn't out of the picture, it's just not a priority at the moment.
  
