@@ -23,7 +23,3 @@ If you don't want numbers or special characters, the other lists should work for
 ### Roadmap
 
 1. CLI validation
-2. Special Characters
-3. Random capitalization
-4. Numbers
-

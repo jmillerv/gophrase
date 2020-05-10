@@ -3,6 +3,7 @@ package generate
 import (
 	"github.com/gophrase/pkg/corpus"
 	"math/rand"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -12,6 +13,7 @@ type Params struct {
 	WordList     string
 	Capitals     bool
 	SpecialChars bool
+	Numbers      bool
 }
 
 // TODO There is a chance this doesn't capitalize. Need to make a validator.
@@ -43,6 +45,9 @@ func HandleFlags(p *Params, passphrase []string) string {
 	if p.SpecialChars == true {
 		passphrase = SpecialCharacters(passphrase)
 
+	}
+	if p.Numbers == true {
+		passphrase = Numbers(passphrase)
 	}
 	returnValue = strings.Join(passphrase[:], "")
 	if p.Capitals == true {
@@ -78,7 +83,7 @@ func Password(p *Params) string {
 		passphrase = append(passphrase, word)
 	}
 	returnValue := strings.Join(passphrase[:], "")
-	if p.Capitals == true || p.SpecialChars == true {
+	if p.Capitals == true || p.SpecialChars == true || p.Numbers == true {
 		returnValue = HandleFlags(p, passphrase)
 	}
 
@@ -92,6 +97,17 @@ func SpecialCharacters(passphrase []string) []string {
 	for i := 0; i < charCount; i++ {
 		char := corpus.GetSpecialChar()
 		passphrase = append(passphrase, char)
+	}
+	rand.Shuffle(len(passphrase), func(i, j int) { passphrase[i], passphrase[j] = passphrase[j], passphrase[i] })
+	return passphrase
+}
+
+func Numbers(passphrase []string) []string {
+	rand.Seed(time.Now().UnixNano())
+	charCount := rand.Intn(len(passphrase)) + 1
+	for i := 0; i < charCount; i++ {
+		num := strconv.Itoa(rand.Intn(100))
+		passphrase = append(passphrase, num)
 	}
 	rand.Shuffle(len(passphrase), func(i, j int) { passphrase[i], passphrase[j] = passphrase[j], passphrase[i] })
 	return passphrase

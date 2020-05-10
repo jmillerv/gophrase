@@ -33,6 +33,11 @@ var Commands = []*cli.Command{
 			} else {
 				p.SpecialChars = false
 			}
+			if c.Bool("number") {
+				p.Numbers = true
+			} else {
+				p.Numbers = false
+			}
 			password := generate.Password(&p)
 			fmt.Println(password)
 			return nil
@@ -47,6 +52,11 @@ var Commands = []*cli.Command{
 				Name:    "special",
 				Aliases: []string{"s"},
 				Usage:   "Add random special characters to your passwords",
+			},
+			&cli.BoolFlag{
+				Name:    "number",
+				Aliases: []string{"n"},
+				Usage:   "Add numbers to your passwords",
 			},
 		},
 	},
