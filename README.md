@@ -18,6 +18,10 @@ The [current recommendation](http://world.std.com/~reinhold/dicewarefaq.html#how
 
 If you want to switch the word list simply pass the letter a, b, c, or d after the number of words.
 Ex: `gophrase gen 3 d`  
+Note: If changing the default passphrase length, wordlist must be the second argument. 
+
+**Options**
+
 a = EFF short word list 2  
 b = EFF short word list 1  
 c = EFF large word list  
@@ -51,5 +55,5 @@ Replacing the math/rand with crypto/rand isn't out of the picture, it's just not
 ### Roadmap
 
 1. CLI validation
-2. Print list options
-3. Entropy output
+2. Entropy output
+3. Defaults for wordlist and word count

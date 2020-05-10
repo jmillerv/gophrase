@@ -2,6 +2,7 @@ package argument
 
 import (
 	"fmt"
+	"github.com/gophrase/pkg/corpus"
 	"github.com/gophrase/pkg/generate"
 	"github.com/urfave/cli/v2"
 	"strconv"
@@ -58,6 +59,15 @@ var Commands = []*cli.Command{
 				Aliases: []string{"n"},
 				Usage:   "Add numbers to your passwords",
 			},
+		},
+	},
+	{
+		Name:    "Wordlist Options",
+		Aliases: []string{"opts"},
+		Usage:   "View the wordlist options for passphrase generation",
+		Action: func(c *cli.Context) error {
+			fmt.Print(string(corpus.PrintWordListOptions()))
+			return nil
 		},
 	},
 }

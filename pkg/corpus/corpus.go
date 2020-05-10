@@ -65,3 +65,11 @@ func setWordList(wordlist string) string {
 		return internal.EFF_SHORT_2
 	}
 }
+
+func PrintWordListOptions() []byte {
+	fileLocation, err := box.Find(internal.LIST_OPTIONS)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return fileLocation
+}
