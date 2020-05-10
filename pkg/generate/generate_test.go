@@ -1,7 +1,6 @@
 package generate
 
 import (
-	"fmt"
 	"github.com/gophrase/pkg/corpus"
 	"math"
 	"regexp"
@@ -95,11 +94,31 @@ func TestSpecialCharacters(t *testing.T) {
 	specString := strings.Join(specPhrase[:], "")
 	var isStringAlphanumeric = regexp.MustCompile(`^[^A-Za-z0-9]+$`).MatchString
 	// use negative matching here because I don't want to look up regex stuff right now
-	fmt.Println(specString)
 	if isStringAlphanumeric(specString) == true {
 
 		t.Errorf("Special Characters failed expected special character got %s", specString)
 	}
+}
+
+func TestNumbers(t *testing.T) {
+	p := Params{
+		WordCount: 3,
+		WordList:  "a",
+		Numbers:   true,
+	}
+	var passphrase []string
+	for i := 0; i <= p.WordCount; i++ {
+		key := key(p.WordList)
+		word := corpus.GetWord(key, p.WordList)
+		passphrase = append(passphrase, word)
+	}
+	numPhrase := Numbers(passphrase)
+	numString := strings.Join(numPhrase[:], "")
+	var stringContainsNumbers = regexp.MustCompile(`[0-9]`).MatchString
+	if stringContainsNumbers(numString) == false {
+		t.Errorf("Numbers failed expected at least one number got %s", numString)
+	}
+
 }
 
 func getDigit(num, length int) int {
