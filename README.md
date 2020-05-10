@@ -44,7 +44,7 @@ d = Reinhold word list
 
 Ex: `gophrase gen -n -s -c` will generate a three word passphrase with numbers, special characters, and capitals. 
 
-The order of the flags does not matter. 
+The order of the flags does not matter but the flags must be passed before the arguments `gophrase gen -s 5`. 
 
 ### Corpus 
 
