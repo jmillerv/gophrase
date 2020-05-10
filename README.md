@@ -53,7 +53,7 @@ There are 4 lists to choose from, if you opt for the Reinhold list it's possible
 If you don't want numbers or special characters, the other lists should work for you.
 
 ### Further Reading
-https://theworld.com/~reinhold/diceware.html
+https://theworld.com/~reinhold/diceware.html  
 https://www.pleacher.com/mp/mlessons/algebra/entropy.html
 
 ### Usage in Production Environments
