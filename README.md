@@ -28,7 +28,9 @@ d = Reinhold word list
 `-n` Adds numbers to the passphrase   
 `-s` Adds special characters to the passphrase  
 
-Ex: `gophrase gen -n -s -c`
+Ex: `gophrase gen -n -s -c` will generate a three word passphrase with numbers, special characters, and capitals. 
+
+The order of the flags does not matter. 
 
 ### Corpus 
 
@@ -39,6 +41,13 @@ If you don't want numbers or special characters, the other lists should work for
 ### Further Reading
 https://theworld.com/~reinhold/diceware.html
 
+### Usage in Production Environments
+This is the use at your own risk warning. As this program uses the math/rand package and not the crypto/rand package. As such I would avoid production 
+environments because of the possibility of being subject to a time attack. That being said security is all about 
+threat models, and most users who just need a quick simple password aren't being actively targeted on their machines. 
+
+Replacing the math/rand with crypto/rand isn't out of the picture, it's just not a priority at the moment.
+ 
 ### Roadmap
 
 1. CLI validation
