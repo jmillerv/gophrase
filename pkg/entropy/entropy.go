@@ -12,6 +12,6 @@ func PrintEntropy(passphrase string ) {
 	entropy := zxcvbn.PasswordStrength(passphrase,nil)
 	fmt.Println("Password: " + entropy.Password)
 	fmt.Println("Entropy: ", entropy.Entropy)
-	fmt.Println("Crack Time " + entropy.CrackTimeDisplay)
+	fmt.Println("Crack Time: " + entropy.CrackTimeDisplay)
 	fmt.Println("Score: ", entropy.Score, "/ 4")
 }
