@@ -7,7 +7,7 @@ from a list of words using only dice. The original creator was Arnold Reinhold. 
 way possess about 12.9 bits of entropy per word if the attacker knows Diceware was the method used, the list, 
 and the word length. Less information can yield higher passphrase entropy. 
 
-### About sEntropy
+### About Entropy
 Entropy is essentially a measure of how unpredictable a password is. 
 
 The below chart is a good metric of password strength based on entropy.
@@ -44,7 +44,7 @@ d = Reinhold word list
 
 Ex: `gophrase gen -n -s -c` will generate a three word passphrase with numbers, special characters, and capitals. 
 
-The order of the flags does not matter. 
+The order of the flags does not matter but the flags must be passed before the arguments `gophrase gen -s 5`. 
 
 ### Corpus 
 
@@ -53,13 +53,11 @@ There are 4 lists to choose from, if you opt for the Reinhold list it's possible
 If you don't want numbers or special characters, the other lists should work for you.
 
 ### Further Reading
-https://theworld.com/~reinhold/diceware.html
+https://theworld.com/~reinhold/diceware.html  
 https://www.pleacher.com/mp/mlessons/algebra/entropy.html
 
 ### Usage in Production Environments
-This is the use at your own risk warning. As this program uses the math/rand package and not the crypto/rand package. As such I would avoid production 
-environments because of the possibility of being subject to a time attack. That being said security is all about 
-threat models, and most users who just need a quick simple password aren't being actively targeted on their machines. 
+This is the use at your own risk warning. As this program uses the math/rand package and not the crypto/rand package, I would avoid production environments because of the possibility of being subject to a time attack. That being said, security is all about threat models, and most users who need a quick simple password aren't being actively targeted on their machines. 
 
 Replacing the math/rand with crypto/rand isn't out of the picture, it's just not a priority at the moment.
  
