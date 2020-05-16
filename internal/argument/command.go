@@ -17,6 +17,7 @@ var Commands = []*cli.Command{
 		Usage:   "gen [int]",
 		Action: func(c *cli.Context) error {
 			// TODO input validator to clean up section
+			config.LoadConfigDefaults()
 			p := generate.Params{}
 			p.WordCount, _ = strconv.Atoi(c.Args().Get(0))
 			if p.WordCount == 0 {
@@ -73,10 +74,29 @@ var Commands = []*cli.Command{
 		},
 	},
 	{
-		Name:    "List Defaults",
-		Aliases: []string{"ld"},
+		Name:    "Set Defaults",
+		Aliases: []string{"sd"},
 		Usage:   "Set default options for word count and word list",
 		Action: func(c *cli.Context) error {
+			p := generate.Params{}
+			p.WordCount, _ = strconv.Atoi(c.Args().Get(0))
+			if p.WordCount == 0 {
+				p.WordCount = config.Defaults.WordCount
+			}
+			p.WordList = corpus.SetWordList(c.Args().Get(1))
+			if p.WordList == "" {
+				p.WordList = config.Defaults.WordList
+			}
+			config.SetConfigDefaults(config.Defaults, p.WordCount, p.WordList)
+			return nil
+		},
+	},
+	{
+		Name:    "List Defaults",
+		Aliases: []string{"ld"},
+		Usage:   "Print default options for word count and word list",
+		Action: func(c *cli.Context) error {
+			config.LoadConfigDefaults()
 			config.PrintConfigDefaults(config.Defaults)
 			return nil
 		},
