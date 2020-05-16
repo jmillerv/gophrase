@@ -3,7 +3,7 @@ package corpus
 import (
 	"encoding/json"
 	"github.com/gophrase/internal"
-	"github.com/gophrase/internal/config"
+	"github.com/gophrase/pkg/config"
 	"log"
 	"math/rand"
 	"time"

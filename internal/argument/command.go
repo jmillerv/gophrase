@@ -2,7 +2,7 @@ package argument
 
 import (
 	"fmt"
-	"github.com/gophrase/internal/config"
+	"github.com/gophrase/pkg/config"
 	"github.com/gophrase/pkg/corpus"
 	"github.com/gophrase/pkg/entropy"
 	"github.com/gophrase/pkg/generate"
