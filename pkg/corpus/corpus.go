@@ -30,7 +30,7 @@ func GetSpecialChar() string {
 }
 
 func getWordList(wordlist string) []byte {
-	fileLocation, err := config.Assets.Find(setWordList(wordlist))
+	fileLocation, err := config.Assets.Find(SetWordList(wordlist))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -48,7 +48,7 @@ func GetWord(key int, wordlist string) string {
 	return word
 }
 
-func setWordList(wordlist string) string {
+func SetWordList(wordlist string) string {
 	// This is organized by my personal preference.
 	switch list := wordlist; list {
 	case "a":
