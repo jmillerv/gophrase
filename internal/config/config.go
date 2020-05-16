@@ -5,24 +5,30 @@ import (
 	"fmt"
 	"github.com/gobuffalo/packr/v2"
 	"github.com/gophrase/internal"
+	"io/ioutil"
 	"log"
-	"strconv"
 )
 
 type Default struct {
-	WordCount int
-	WordList  string
+	WordCount int    `json:"wordCount"`
+	WordList  string `json:"wordList"`
 }
 
 var Assets = packr.New("assets", "../../assets")
+var Defaults = new(Default)
 
-var Defaults = Default{
-	WordCount: 3,
-	WordList:  internal.EFF_SHORT_2,
-}
-
-func SetConfigDefaults(Defaults *Default, count int, list string) {
-
+func SetConfigDefaults(config *Default, count int, list string) {
+	fileLocation := internal.DEFAULTS //TODO create better implementation
+	config.WordCount = count
+	config.WordList = list
+	file, err := json.MarshalIndent(config, "", "\t")
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = ioutil.WriteFile("../../assets/"+fileLocation, file, 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func LoadConfigDefaults() {
@@ -30,15 +36,12 @@ func LoadConfigDefaults() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	settings := make(map[int]string)
-	err = json.Unmarshal(fileLocation, &settings)
+	err = json.Unmarshal(fileLocation, &Defaults)
 	if err != nil {
 		log.Fatal(err)
 	}
-	Defaults.WordCount, _ = strconv.Atoi(settings[0])
-	Defaults.WordList = settings[1]
 }
 
-func PrintConfigDefaults(config Default) {
+func PrintConfigDefaults(config *Default) {
 	fmt.Printf("Word Count: %d \nWord List: %s \n", config.WordCount, config.WordList)
 }

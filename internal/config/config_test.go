@@ -10,5 +10,5 @@ func TestPrintConfigDefaults(t *testing.T) {
 		WordCount: 3,
 		WordList:  internal.EFF_SHORT_2,
 	}
-	PrintConfigDefaults(defaults)
+	PrintConfigDefaults(&defaults)
 }
