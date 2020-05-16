@@ -27,19 +27,19 @@ func TestSetWordList(t *testing.T) {
 
 	var testValues = tables{"a", "b", "c", "d", ""}
 
-	if setWordList(testValues.first) != internal.EFF_SHORT_2 {
-		t.Errorf("setWordList() failed expected 'eff_short_wordlist_2_0.json', but got %s", setWordList(testValues.first))
+	if SetWordList(testValues.first) != internal.EFF_SHORT_2 {
+		t.Errorf("SetWordList() failed expected 'eff_short_wordlist_2_0.json', but got %s", SetWordList(testValues.first))
 	}
-	if setWordList(testValues.second) != internal.EFF_SHORT_1 {
-		t.Errorf("setWordList() failed expected 'eff_short_wordlist_1.json', but got %s", setWordList(testValues.second))
+	if SetWordList(testValues.second) != internal.EFF_SHORT_1 {
+		t.Errorf("SetWordList() failed expected 'eff_short_wordlist_1.json', but got %s", SetWordList(testValues.second))
 	}
-	if setWordList(testValues.third) != internal.EFF_LARGE {
-		t.Errorf("setWordList() failed expected 'eff_large_wordlist.json', but got %s", setWordList(testValues.third))
+	if SetWordList(testValues.third) != internal.EFF_LARGE {
+		t.Errorf("SetWordList() failed expected 'eff_large_wordlist.json', but got %s", SetWordList(testValues.third))
 	}
-	if setWordList(testValues.fourth) != internal.REINHOLD {
-		t.Errorf("setWordList() failed expected 'reinhold_wordlist.json', but got %s", setWordList(testValues.fourth))
+	if SetWordList(testValues.fourth) != internal.REINHOLD {
+		t.Errorf("SetWordList() failed expected 'reinhold_wordlist.json', but got %s", SetWordList(testValues.fourth))
 	}
-	if setWordList(testValues.fifth) != internal.EFF_SHORT_2 {
-		t.Errorf("setWordList() failed expected 'eff_short_wordlist_2_0.json', but got %s", setWordList(testValues.fifth))
+	if SetWordList(testValues.fifth) != internal.EFF_SHORT_2 {
+		t.Errorf("SetWordList() failed expected 'eff_short_wordlist_2_0.json', but got %s", SetWordList(testValues.fifth))
 	}
 }

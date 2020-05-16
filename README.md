@@ -21,8 +21,8 @@ The below chart is a good metric of password strength based on entropy.
 Call the bin file and pass a number that represents the number of words you would like your phrase to be. 
 Gophrase defaults to a three word passphrase with no capitalization, special characters or numbers.
 
-Ex: `gophrase gen` will yield a default three word passphrase  
-Ex: `gophrase gen 5` will yield a five word passphrase
+Ex: `gophrase gen` will yield a passphrase using the default size.
+Ex: `gophrase gen 6` will yield a six word passphrase
 
 The [current recommendation](http://world.std.com/~reinhold/dicewarefaq.html#howlong) for secure passwords is a passphrase of at least six words.
 
@@ -64,4 +64,5 @@ Replacing the math/rand with crypto/rand isn't out of the picture, it's just not
 ### Roadmap
 
 1. CLI validation
-2. Defaults for wordlist and word count
+2. Cleaner CLI command handling
+3. GUI
