@@ -1,6 +1,7 @@
 package generate
 
 import (
+	"github.com/gophrase/internal"
 	"github.com/gophrase/pkg/corpus"
 	"math/rand"
 	"strconv"
@@ -68,7 +69,7 @@ func key(wordList string) int {
 }
 
 func keySize(wordList string) int {
-	if wordList == "a" || wordList == "b" {
+	if wordList == internal.EFF_SHORT_1 || wordList == internal.EFF_SHORT_2 {
 		return 4
 	} else {
 		return 5
@@ -86,7 +87,6 @@ func Password(p *Params) string {
 	if p.Capitals == true || p.SpecialChars == true || p.Numbers == true {
 		returnValue = HandleFlags(p, passphrase)
 	}
-
 	return returnValue
 }
 
