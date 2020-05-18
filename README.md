@@ -1,5 +1,5 @@
 # gophrase
-CLI passphrase generator written in Go
+CLI diceware passphrase generator written in Go
 
 ### About Diceware Passwords
 [Diceware](https://en.wikipedia.org/wiki/Diceware) is a method that allows anyone to use ordinary dice to generate an easy to remember passphrase
