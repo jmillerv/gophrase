@@ -3,7 +3,7 @@ package internal
 // App information constants
 const APP_NAME = "Go Phrase"
 const APP_USAGE = "CLI for generating secure, memorable passwords"
-const APP_VERSION = "v0.0.7 | release: 00.5.10.20"
+const APP_VERSION = "v1.0.0 | release: 5.10.20"
 const APP_USAGETEXT = "gophrase gen [word count] [word list] [--flags]"
 
 // Static asset constants
