@@ -1,6 +1,6 @@
 # gophrase
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/96a04583d359433f8c7e8d2bacd89f9b)](https://app.codacy.com/manual/jmiller.v/gophrase?utm_source=github.com&utm_medium=referral&utm_content=jmillerv/gophrase&utm_campaign=Badge_Grade_Settings)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/96a04583d359433f8c7e8d2bacd89f9b)](https://app.codacy.com/manual/jmiller.v/gophrase?utm_source=github.com&utm_medium=referral&utm_content=jmillerv/gophrase&utm_campaign=Badge_Grade_Settings) [![Go Report Card](https://goreportcard.com/badge/github.com/jmillerv/gophrase)](https://goreportcard.com/report/github.com/jmillerv/gophrase)
 
 CLI diceware passphrase generator written in Go
 
