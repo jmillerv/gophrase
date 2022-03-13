@@ -1,11 +1,11 @@
-package argument
+package main
 
 import (
 	"fmt"
-	"github.com/gophrase/pkg/config"
-	"github.com/gophrase/pkg/corpus"
-	"github.com/gophrase/pkg/entropy"
-	"github.com/gophrase/pkg/generate"
+	"github.com/jmillerv/gophrase/config"
+	"github.com/jmillerv/gophrase/corpus"
+	"github.com/jmillerv/gophrase/entropy"
+	"github.com/jmillerv/gophrase/generate"
 	"github.com/urfave/cli/v2"
 	"strconv"
 )

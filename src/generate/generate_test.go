@@ -1,7 +1,7 @@
 package generate
 
 import (
-	"github.com/gophrase/pkg/corpus"
+	"github.com/jmillerv/gophrase/corpus"
 	"math"
 	"regexp"
 	"strings"

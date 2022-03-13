@@ -1,8 +1,8 @@
 package generate
 
 import (
-	"github.com/gophrase/internal"
-	"github.com/gophrase/pkg/corpus"
+	"github.com/jmillerv/gophrase/config"
+	"github.com/jmillerv/gophrase/corpus"
 	"math/rand"
 	"strconv"
 	"strings"
@@ -69,7 +69,7 @@ func key(wordList string) int {
 }
 
 func keySize(wordList string) int {
-	if wordList == internal.EFF_SHORT_1 || wordList == internal.EFF_SHORT_2 {
+	if wordList == config.EFF_SHORT_1 || wordList == config.EFF_SHORT_2 {
 		return 4
 	} else {
 		return 5

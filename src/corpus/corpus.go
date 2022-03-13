@@ -2,15 +2,14 @@ package corpus
 
 import (
 	"encoding/json"
-	"github.com/gophrase/internal"
-	"github.com/gophrase/pkg/config"
+	"github.com/jmillerv/gophrase/config"
 	"log"
 	"math/rand"
 	"time"
 )
 
 func getSpecialCharList() []byte {
-	fileLocation, err := config.Assets.Find(internal.CHARACTERS)
+	fileLocation, err := config.Assets.Find(config.CHARACTERS)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -52,20 +51,20 @@ func SetWordList(wordlist string) string {
 	// This is organized by my personal preference.
 	switch list := wordlist; list {
 	case "a":
-		return internal.EFF_SHORT_2
+		return config.EFF_SHORT_2
 	case "b":
-		return internal.EFF_SHORT_1
+		return config.EFF_SHORT_1
 	case "c":
-		return internal.EFF_LARGE
+		return config.EFF_LARGE
 	case "d":
-		return internal.REINHOLD
+		return config.REINHOLD
 	default:
 		return config.Defaults.WordList
 	}
 }
 
 func PrintWordListOptions() []byte {
-	fileLocation, err := config.Assets.Find(internal.LIST_OPTIONS)
+	fileLocation, err := config.Assets.Find(config.LIST_OPTIONS)
 	if err != nil {
 		log.Fatal(err)
 	}
