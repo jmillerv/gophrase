@@ -1,4 +1,4 @@
-package main
+package command
 
 import (
 	"fmt"
@@ -6,6 +6,7 @@ import (
 	"github.com/jmillerv/gophrase/corpus"
 	"github.com/jmillerv/gophrase/entropy"
 	"github.com/jmillerv/gophrase/generate"
+	"github.com/jmillerv/gophrase/handlers"
 	"github.com/urfave/cli/v2"
 	"strconv"
 )
@@ -65,7 +66,7 @@ var Commands = []*cli.Command{
 		},
 	},
 	{
-		Name:    "Wordlist Options",
+		Name:    "wordlist-options",
 		Aliases: []string{"opts"},
 		Usage:   "View the wordlist options for passphrase generation",
 		Action: func(c *cli.Context) error {
@@ -74,7 +75,7 @@ var Commands = []*cli.Command{
 		},
 	},
 	{
-		Name:    "Set Defaults",
+		Name:    "set-defaults",
 		Aliases: []string{"sd"},
 		Usage:   "Set default options for word count and word list",
 		Action: func(c *cli.Context) error {
@@ -92,12 +93,21 @@ var Commands = []*cli.Command{
 		},
 	},
 	{
-		Name:    "List Defaults",
+		Name:    "list-defaults",
 		Aliases: []string{"ld"},
 		Usage:   "Print default options for word count and word list",
 		Action: func(c *cli.Context) error {
 			config.LoadConfigDefaults()
 			config.PrintConfigDefaults(config.Defaults)
+			return nil
+		},
+	},
+	{
+		Name:    "run-server",
+		Aliases: []string{"serve"},
+		Usage:   "Start a gophrase server",
+		Action: func(c *cli.Context) error {
+			handlers.RunServer()
 			return nil
 		},
 	},
