@@ -9,6 +9,8 @@ import (
 	"time"
 )
 
+// Functions are exported in this package because they will eventually be imported in other parts of the code.
+
 type Params struct {
 	WordCount    int
 	WordList     string
@@ -17,6 +19,7 @@ type Params struct {
 	Numbers      bool
 }
 
+// Capitals handles adding capitalized letters to a passphrase.
 // TODO There is a chance this doesn't capitalize. Need to make a validator.
 func Capitals(passphrase []string) string {
 	rand.Seed(time.Now().UnixNano())
@@ -41,6 +44,7 @@ func choice() int {
 	return opts[rand.Intn(len(opts))]
 }
 
+// HandleFlags looks at the parameters and updates the passphrase based on the flags
 func HandleFlags(p *Params, passphrase []string) string {
 	var returnValue string
 	if p.SpecialChars == true {
@@ -77,6 +81,7 @@ func keySize(wordList string) int {
 	}
 }
 
+// Password generates a password
 func Password(p *Params) string {
 	var passphrase []string
 	for i := 1; i <= p.WordCount; i++ {
@@ -91,6 +96,7 @@ func Password(p *Params) string {
 	return returnValue
 }
 
+// SpecialCharacters handles adding special characters to the passphrase
 func SpecialCharacters(passphrase []string) []string {
 	rand.Seed(time.Now().UnixNano())
 	passphrase = append(passphrase, "")
@@ -104,6 +110,7 @@ func SpecialCharacters(passphrase []string) []string {
 	return passphrase
 }
 
+// Numbers handles adding numbers to the passphrase.
 func Numbers(passphrase []string) []string {
 	rand.Seed(time.Now().UnixNano())
 	charCount := rand.Intn(len(passphrase)) + 1

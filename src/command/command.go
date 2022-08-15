@@ -6,7 +6,6 @@ import (
 	"github.com/jmillerv/gophrase/corpus"
 	"github.com/jmillerv/gophrase/entropy"
 	"github.com/jmillerv/gophrase/generate"
-	"github.com/jmillerv/gophrase/handlers"
 	"github.com/urfave/cli/v2"
 	"strconv"
 )
@@ -15,6 +14,7 @@ const (
 	defaultWordCount = 5
 )
 
+// Commands hold an array of cli.Commands which are used to run the CLI application.
 var Commands = []*cli.Command{
 	{
 		Name:    "generate",
@@ -23,7 +23,7 @@ var Commands = []*cli.Command{
 		Action: func(c *cli.Context) error {
 			// TODO input validator to clean up section
 			config.LoadConfig()
-			p := generate.Params{}
+			p := &generate.Params{}
 			p.WordCount, _ = strconv.Atoi(c.Args().Get(0))
 			if p.WordCount == 0 {
 				p.WordCount = config.LoadedConfig.WordCount
@@ -47,7 +47,7 @@ var Commands = []*cli.Command{
 			} else {
 				p.Numbers = false
 			}
-			password := generate.Password(&p)
+			password := generate.Password(p)
 			entropy.PrintEntropy(password)
 			return nil
 		},
@@ -118,7 +118,7 @@ var Commands = []*cli.Command{
 			if c.Bool("number") {
 				conf.Number = true
 			}
-			config.SetConfigDefaults(conf)
+			config.SetConfig(conf)
 			return nil
 		},
 	},
@@ -129,15 +129,6 @@ var Commands = []*cli.Command{
 		Action: func(c *cli.Context) error {
 			config.LoadConfig()
 			config.LoadedConfig.PrintConfig()
-			return nil
-		},
-	},
-	{
-		Name:    "run-server",
-		Aliases: []string{"serve"},
-		Usage:   "Start a gophrase server",
-		Action: func(c *cli.Context) error {
-			handlers.RunServer()
 			return nil
 		},
 	},
