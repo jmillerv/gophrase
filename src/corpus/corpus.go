@@ -16,6 +16,7 @@ func getSpecialCharList() []byte {
 	return fileLocation
 }
 
+// GetSpecialChar retrieves a special character from the special_characters.json
 func GetSpecialChar() string {
 	rand.Seed(time.Now().UnixNano())
 	chars := make(map[int]string)
@@ -36,6 +37,7 @@ func getWordList(wordlist string) []byte {
 	return fileLocation
 }
 
+// GetWord retrieves a word from the passed in wordlist
 func GetWord(key int, wordlist string) string {
 	words := make(map[int]string)
 	corpus := getWordList(wordlist)
@@ -47,6 +49,7 @@ func GetWord(key int, wordlist string) string {
 	return word
 }
 
+// SetWordList updates the LoadedConfig.Wordlist property
 func SetWordList(wordlist string) string {
 	switch list := wordlist; list {
 	case "a":
@@ -62,6 +65,7 @@ func SetWordList(wordlist string) string {
 	}
 }
 
+// PrintWordListOptions prints wordlist documentation to the console.
 func PrintWordListOptions() []byte {
 	fileLocation, err := config.Assets.ReadFile(config.ListOptions)
 	if err != nil {

@@ -14,6 +14,7 @@ const (
 	defaultWordCount = 5
 )
 
+// Commands hold an array of cli.Commands which are used to run the CLI application.
 var Commands = []*cli.Command{
 	{
 		Name:    "generate",
@@ -117,7 +118,7 @@ var Commands = []*cli.Command{
 			if c.Bool("number") {
 				conf.Number = true
 			}
-			config.SetConfigDefaults(conf)
+			config.SetConfig(conf)
 			return nil
 		},
 	},

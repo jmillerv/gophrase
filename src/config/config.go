@@ -19,9 +19,13 @@ const (
 	Configuration = "assets/config/config.yaml"
 )
 
+// Assets is the embed.FS file system to access embedded files throughout the application.
 var Assets embed.FS
+
+// LoadedConfig is the configuration for gophrase throuhgout the application.
 var LoadedConfig = new(Config)
 
+// Config holds the values from a configuration file for default generation settings.
 type Config struct {
 	WordCount int    `yaml:"WordCount"`
 	WordList  string `yaml:"WordList"`
@@ -30,12 +34,14 @@ type Config struct {
 	Number    bool   `yaml:"Number"`
 }
 
+// PrintConfig outputs the current config to the console
 func (c *Config) PrintConfig() {
 	log.Print(format.StructToIndentedString(c))
 }
 
-func SetConfigDefaults(config *Config) {
-	fileLocation := Configuration // TODO create better implementation
+// SetConfig takes in a config and writes it to the configuration file.
+func SetConfig(config *Config) {
+	fileLocation := Configuration
 	file, err := yaml.Marshal(config)
 	if err != nil {
 		log.Fatal(err)
@@ -46,6 +52,7 @@ func SetConfigDefaults(config *Config) {
 	}
 }
 
+// LoadConfig reads a configuration file and loads it into the LoadedConfig variable.
 func LoadConfig() {
 	fileLocation, err := Assets.ReadFile(Configuration)
 	if err != nil {
