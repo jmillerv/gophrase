@@ -1,55 +1,58 @@
 package config
 
 import (
-	"encoding/json"
-	"fmt"
-	"github.com/gobuffalo/packr/v2"
+	"embed"
+	"github.com/jmillerv/go-utilities/format"
+	"gopkg.in/yaml.v3"
 	"io/ioutil"
 	"log"
 )
 
 // Static asset constants
-const EFF_LARGE = "eff_large_wordlist.json"
-const EFF_SHORT_1 = "eff_short_wordlist_1.json"
-const EFF_SHORT_2 = "eff_short_wordlist_2_0.json"
-const REINHOLD = "reinhold_wordlist.json"
-const CHARACTERS = "special_characters.json"
-const LIST_OPTIONS = "list_options.txt"
-const DEFAULTS = "defaults.json"
+const (
+	EffLarge      = "assets/wordlists/eff_large_wordlist.json"
+	EffShort1     = "assets/wordlists/eff_short_wordlist_1.json"
+	EffShort2     = "assets/wordlists/eff_short_wordlist_2.json"
+	Reinhold      = "assets/wordlists/reinhold_wordlist.json"
+	Characters    = "assets/wordlists/special_characters.json"
+	ListOptions   = "assets/list_options.txt"
+	Configuration = "assets/config/config.yaml"
+)
 
-type Default struct {
-	WordCount int    `json:"wordCount"`
-	WordList  string `json:"wordList"`
+var Assets embed.FS
+var LoadedConfig = new(Config)
+
+type Config struct {
+	WordCount int    `yaml:"WordCount"`
+	WordList  string `yaml:"WordList"`
+	Capital   bool   `yaml:"Capital"`
+	Special   bool   `yaml:"Special"`
+	Number    bool   `yaml:"Number"`
 }
 
-var Assets = packr.New("assets", "../../assets")
-var Defaults = new(Default)
-
-func SetConfigDefaults(config *Default, count int, list string) {
-	fileLocation := DEFAULTS // TODO create better implementation
-	config.WordCount = count
-	config.WordList = list
-	file, err := json.MarshalIndent(config, "", "\t")
-	if err != nil {
-		log.Fatal(err)
-	}
-	err = ioutil.WriteFile("../../assets/"+fileLocation, file, 0644)
-	if err != nil {
-		log.Fatal(err)
-	}
+func (c *Config) PrintConfig() {
+	log.Print(format.StructToIndentedString(c))
 }
 
-func LoadConfigDefaults() {
-	fileLocation, err := Assets.Find(DEFAULTS)
+func SetConfigDefaults(config *Config) {
+	fileLocation := Configuration // TODO create better implementation
+	file, err := yaml.Marshal(config)
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = json.Unmarshal(fileLocation, &Defaults)
+	err = ioutil.WriteFile(fileLocation, file, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
-func PrintConfigDefaults(config *Default) {
-	fmt.Printf("Word Count: %d \nWord List: %s \n", config.WordCount, config.WordList)
+func LoadConfig() {
+	fileLocation, err := Assets.ReadFile(Configuration)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = yaml.Unmarshal(fileLocation, &LoadedConfig)
+	if err != nil {
+		log.Fatal(err)
+	}
 }

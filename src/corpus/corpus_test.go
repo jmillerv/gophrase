@@ -1,7 +1,7 @@
 package corpus
 
 import (
-	"github.com/gophrase/internal"
+	"github.com/jmillerv/gophrase/config"
 	"testing"
 )
 
@@ -27,19 +27,19 @@ func TestSetWordList(t *testing.T) {
 
 	var testValues = tables{"a", "b", "c", "d", ""}
 
-	if SetWordList(testValues.first) != internal.EFF_SHORT_2 {
+	if SetWordList(testValues.first) != config.EffShort2 {
 		t.Errorf("SetWordList() failed expected 'eff_short_wordlist_2_0.json', but got %s", SetWordList(testValues.first))
 	}
-	if SetWordList(testValues.second) != internal.EFF_SHORT_1 {
+	if SetWordList(testValues.second) != config.EffShort1 {
 		t.Errorf("SetWordList() failed expected 'eff_short_wordlist_1.json', but got %s", SetWordList(testValues.second))
 	}
-	if SetWordList(testValues.third) != internal.EFF_LARGE {
+	if SetWordList(testValues.third) != config.EffLarge {
 		t.Errorf("SetWordList() failed expected 'eff_large_wordlist.json', but got %s", SetWordList(testValues.third))
 	}
-	if SetWordList(testValues.fourth) != internal.REINHOLD {
+	if SetWordList(testValues.fourth) != config.Reinhold {
 		t.Errorf("SetWordList() failed expected 'reinhold_wordlist.json', but got %s", SetWordList(testValues.fourth))
 	}
-	if SetWordList(testValues.fifth) != internal.EFF_SHORT_2 {
+	if SetWordList(testValues.fifth) != config.EffShort1 {
 		t.Errorf("SetWordList() failed expected 'eff_short_wordlist_2_0.json', but got %s", SetWordList(testValues.fifth))
 	}
 }

@@ -9,7 +9,7 @@ import (
 )
 
 func getSpecialCharList() []byte {
-	fileLocation, err := config.Assets.Find(config.CHARACTERS)
+	fileLocation, err := config.Assets.ReadFile(config.Characters)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -29,7 +29,7 @@ func GetSpecialChar() string {
 }
 
 func getWordList(wordlist string) []byte {
-	fileLocation, err := config.Assets.Find(SetWordList(wordlist))
+	fileLocation, err := config.Assets.ReadFile(SetWordList(wordlist))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -48,23 +48,22 @@ func GetWord(key int, wordlist string) string {
 }
 
 func SetWordList(wordlist string) string {
-	// This is organized by my personal preference.
 	switch list := wordlist; list {
 	case "a":
-		return config.EFF_SHORT_2
+		return config.EffShort1
 	case "b":
-		return config.EFF_SHORT_1
+		return config.EffShort2
 	case "c":
-		return config.EFF_LARGE
+		return config.EffLarge
 	case "d":
-		return config.REINHOLD
+		return config.Reinhold
 	default:
-		return config.Defaults.WordList
+		return config.LoadedConfig.WordList
 	}
 }
 
 func PrintWordListOptions() []byte {
-	fileLocation, err := config.Assets.Find(config.LIST_OPTIONS)
+	fileLocation, err := config.Assets.ReadFile(config.ListOptions)
 	if err != nil {
 		log.Fatal(err)
 	}

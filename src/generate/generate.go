@@ -68,8 +68,9 @@ func key(wordList string) int {
 	return key
 }
 
+// keySize determines the size of the key for random generation based on the wordlist used.
 func keySize(wordList string) int {
-	if wordList == config.EFF_SHORT_1 || wordList == config.EFF_SHORT_2 {
+	if wordList == config.EffShort1 || wordList == config.EffShort2 {
 		return 4
 	} else {
 		return 5
@@ -93,11 +94,12 @@ func Password(p *Params) string {
 func SpecialCharacters(passphrase []string) []string {
 	rand.Seed(time.Now().UnixNano())
 	passphrase = append(passphrase, "")
-	charCount := rand.Intn(len(passphrase)) + 1
+	charCount := rand.Intn(len(passphrase)) + 1 // add a random number of special characters
 	for i := 0; i < charCount; i++ {
 		char := corpus.GetSpecialChar()
 		passphrase = append(passphrase, char)
 	}
+	// shuffle the special characters so they aren't just at the end of a string array
 	rand.Shuffle(len(passphrase), func(i, j int) { passphrase[i], passphrase[j] = passphrase[j], passphrase[i] })
 	return passphrase
 }
