@@ -1,13 +1,15 @@
 package generate
 
 import (
-	"github.com/gophrase/internal"
-	"github.com/gophrase/pkg/corpus"
+	"github.com/jmillerv/gophrase/config"
+	"github.com/jmillerv/gophrase/corpus"
 	"math/rand"
 	"strconv"
 	"strings"
 	"time"
 )
+
+// Functions are exported in this package because they will eventually be imported in other parts of the code.
 
 type Params struct {
 	WordCount    int
@@ -17,6 +19,7 @@ type Params struct {
 	Numbers      bool
 }
 
+// Capitals handles adding capitalized letters to a passphrase.
 // TODO There is a chance this doesn't capitalize. Need to make a validator.
 func Capitals(passphrase []string) string {
 	rand.Seed(time.Now().UnixNano())
@@ -41,6 +44,7 @@ func choice() int {
 	return opts[rand.Intn(len(opts))]
 }
 
+// HandleFlags looks at the parameters and updates the passphrase based on the flags
 func HandleFlags(p *Params, passphrase []string) string {
 	var returnValue string
 	if p.SpecialChars == true {
@@ -68,14 +72,16 @@ func key(wordList string) int {
 	return key
 }
 
+// keySize determines the size of the key for random generation based on the wordlist used.
 func keySize(wordList string) int {
-	if wordList == internal.EFF_SHORT_1 || wordList == internal.EFF_SHORT_2 {
+	if wordList == config.EffShort1 || wordList == config.EffShort2 {
 		return 4
 	} else {
 		return 5
 	}
 }
 
+// Password generates a password
 func Password(p *Params) string {
 	var passphrase []string
 	for i := 1; i <= p.WordCount; i++ {
@@ -90,18 +96,21 @@ func Password(p *Params) string {
 	return returnValue
 }
 
+// SpecialCharacters handles adding special characters to the passphrase
 func SpecialCharacters(passphrase []string) []string {
 	rand.Seed(time.Now().UnixNano())
 	passphrase = append(passphrase, "")
-	charCount := rand.Intn(len(passphrase)) + 1
+	charCount := rand.Intn(len(passphrase)) + 1 // add a random number of special characters
 	for i := 0; i < charCount; i++ {
 		char := corpus.GetSpecialChar()
 		passphrase = append(passphrase, char)
 	}
+	// shuffle the special characters so they aren't just at the end of a string array
 	rand.Shuffle(len(passphrase), func(i, j int) { passphrase[i], passphrase[j] = passphrase[j], passphrase[i] })
 	return passphrase
 }
 
+// Numbers handles adding numbers to the passphrase.
 func Numbers(passphrase []string) []string {
 	rand.Seed(time.Now().UnixNano())
 	charCount := rand.Intn(len(passphrase)) + 1
