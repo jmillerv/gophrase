@@ -2,8 +2,8 @@ Wordlist Options
 
 To set the list `gophrase gen 5 a` or `gophrase gen a` if you are okay with a three word passphrase.
 
-a: EFF Short Wordlist 2
-b: EFF Short Wordlist 1
+a: EFF Short Wordlist 1
+b: EFF Short Wordlist 2
 c: EFF Large Wordlist
 d: Reinhold Wordlist
 
