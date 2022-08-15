@@ -22,7 +22,7 @@ var Commands = []*cli.Command{
 		Action: func(c *cli.Context) error {
 			// TODO input validator to clean up section
 			config.LoadConfig()
-			p := generate.Params{}
+			p := &generate.Params{}
 			p.WordCount, _ = strconv.Atoi(c.Args().Get(0))
 			if p.WordCount == 0 {
 				p.WordCount = config.LoadedConfig.WordCount
@@ -46,7 +46,7 @@ var Commands = []*cli.Command{
 			} else {
 				p.Numbers = false
 			}
-			password := generate.Password(&p)
+			password := generate.Password(p)
 			entropy.PrintEntropy(password)
 			return nil
 		},
