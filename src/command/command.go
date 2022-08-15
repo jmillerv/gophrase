@@ -6,7 +6,6 @@ import (
 	"github.com/jmillerv/gophrase/corpus"
 	"github.com/jmillerv/gophrase/entropy"
 	"github.com/jmillerv/gophrase/generate"
-	"github.com/jmillerv/gophrase/handlers"
 	"github.com/urfave/cli/v2"
 	"strconv"
 )
@@ -129,15 +128,6 @@ var Commands = []*cli.Command{
 		Action: func(c *cli.Context) error {
 			config.LoadConfig()
 			config.LoadedConfig.PrintConfig()
-			return nil
-		},
-	},
-	{
-		Name:    "run-server",
-		Aliases: []string{"serve"},
-		Usage:   "Start a gophrase server",
-		Action: func(c *cli.Context) error {
-			handlers.RunServer()
 			return nil
 		},
 	},
