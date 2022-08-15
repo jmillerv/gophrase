@@ -28,7 +28,7 @@ var Commands = []*cli.Command{
 			if p.WordCount == 0 {
 				p.WordCount = config.LoadedConfig.WordCount
 			}
-			p.WordList = c.Args().Get(1)
+			p.WordList = corpus.SetWordList(c.Args().Get(1))
 			if p.WordList == "" {
 				p.WordList = config.LoadedConfig.WordList
 			}
