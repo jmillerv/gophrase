@@ -1,5 +1,6 @@
 
-# Builds all binarys
+
+# Builds all binaries for the /bin directory
 build-all: build-linux build-osx build-windows
 
 # Builds Linux executable
@@ -13,3 +14,7 @@ build-windows:
 # Builds MacOS executable
 build-osx:
     cd ./src && GOOS=darwin GOARCH=amd64 go build -o bin/gophrase-386-darwin main.go
+
+# Build local
+build-local:
+    cd ./src && go build -o ../gophrase
