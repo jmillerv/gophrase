@@ -6,17 +6,19 @@ import (
 	"gopkg.in/yaml.v3"
 	"io/ioutil"
 	"log"
+	"os"
 )
 
 // Static asset constants
 const (
-	EffLarge      = "assets/wordlists/eff_large_wordlist.json"
-	EffShort1     = "assets/wordlists/eff_short_wordlist_1.json"
-	EffShort2     = "assets/wordlists/eff_short_wordlist_2.json"
-	Reinhold      = "assets/wordlists/reinhold_wordlist.json"
-	Characters    = "assets/wordlists/special_characters.json"
-	ListOptions   = "assets/list_options.txt"
-	Configuration = "assets/config/config.yaml"
+	EffLarge             = "assets/wordlists/eff_large_wordlist.json"
+	EffShort1            = "assets/wordlists/eff_short_wordlist_1.json"
+	EffShort2            = "assets/wordlists/eff_short_wordlist_2.json"
+	Reinhold             = "assets/wordlists/reinhold_wordlist.json"
+	Characters           = "assets/wordlists/special_characters.json"
+	ListOptions          = "assets/list_options.txt"
+	DefaultConfiguration = "assets/config/config.yaml"
+	CustomConfiguration  = "config.yaml"
 )
 
 // Assets is the embed.FS file system to access embedded files throughout the application.
@@ -41,12 +43,11 @@ func (c *Config) PrintConfig() {
 
 // SetConfig takes in a config and writes it to the configuration file.
 func SetConfig(config *Config) {
-	fileLocation := Configuration
 	file, err := yaml.Marshal(config)
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = ioutil.WriteFile(fileLocation, file, 0644)
+	err = ioutil.WriteFile(CustomConfiguration, file, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -54,11 +55,19 @@ func SetConfig(config *Config) {
 
 // LoadConfig reads a configuration file and loads it into the LoadedConfig variable.
 func LoadConfig() {
-	fileLocation, err := Assets.ReadFile(Configuration)
+	customFileLocation, err := os.ReadFile(CustomConfiguration)
+	if customFileLocation != nil {
+		err = yaml.Unmarshal(customFileLocation, &LoadedConfig)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return
+	}
+	defaultFileLocation, err := Assets.ReadFile(DefaultConfiguration)
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = yaml.Unmarshal(fileLocation, &LoadedConfig)
+	err = yaml.Unmarshal(defaultFileLocation, &LoadedConfig)
 	if err != nil {
 		log.Fatal(err)
 	}
