@@ -5,6 +5,7 @@ import (
 	"log"
 )
 
+// Serve sets the routers and runs the API server
 func Serve() {
 	router := gin.Default()
 

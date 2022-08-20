@@ -6,10 +6,11 @@ import (
 	"github.com/nbutton23/zxcvbn-go/scoring"
 )
 
+// Metadata represents the data returned about a passphrase from GetEntropy
 type Metadata struct {
 	Entropy   float64 `json:"entropy,omitempty"`
 	CrackTime string  `json:"crack_time,omitempty"`
-	Score     int     `json:"score,omitempty"`
+	Score     int     `json:"score,omitempty"` // x out of 4
 }
 
 // PrintEntropy returns the password and metadata about the strength of a given passphrase to STD out
