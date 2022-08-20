@@ -2,6 +2,7 @@ package command
 
 import (
 	"fmt"
+	"github.com/jmillerv/gophrase/api"
 	"github.com/jmillerv/gophrase/config"
 	"github.com/jmillerv/gophrase/corpus"
 	"github.com/jmillerv/gophrase/entropy"
@@ -129,6 +130,15 @@ var Commands = []*cli.Command{
 		Action: func(c *cli.Context) error {
 			config.LoadConfig()
 			config.LoadedConfig.PrintConfig()
+			return nil
+		},
+	},
+	{
+		Name:    "run-api",
+		Aliases: []string{"api"},
+		Usage:   "Start the gophrase api",
+		Action: func(c *cli.Context) error {
+			api.Serve()
 			return nil
 		},
 	},
