@@ -9,7 +9,7 @@ import (
 )
 
 func getSpecialCharList() []byte {
-	fileLocation, err := config.Assets.ReadFile("../" + config.Characters)
+	fileLocation, err := config.Assets.ReadFile(config.Characters)
 	if err != nil {
 		log.WithField("function", "getSpecialCharList").WithError(err).Fatal("unable to load special characters")
 	}

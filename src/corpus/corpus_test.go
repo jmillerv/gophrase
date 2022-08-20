@@ -2,19 +2,9 @@ package corpus
 
 import (
 	"github.com/jmillerv/gophrase/config"
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
-
-// TODO write TestGetWordList and test the bytes
-func TestGetWord(t *testing.T) {
-	key := 2215
-	wordlist := "a"
-	word := GetWord(key, wordlist)
-	if word != "dandelion" {
-		t.Errorf("GetWord() failed, expected key 2215 to get 'dandelion', got %s", word)
-	}
-
-}
 
 func TestSetWordList(t *testing.T) {
 	type tables struct {
@@ -22,24 +12,40 @@ func TestSetWordList(t *testing.T) {
 		second string
 		third  string
 		fourth string
-		fifth  string
 	}
 
-	var testValues = tables{"a", "b", "c", "d", ""}
+	var testValues = tables{"a", "b", "c", "d"}
+	assert.ObjectsAreEqual(testValues.first, config.EffShort1)
+	assert.ObjectsAreEqual(testValues.second, config.EffShort2)
+	assert.ObjectsAreEqual(testValues.third, config.EffLarge)
+	assert.ObjectsAreEqual(testValues.fourth, config.Reinhold)
+}
 
-	if SetWordList(testValues.first) != config.EffShort2 {
-		t.Errorf("SetWordList() failed expected 'eff_short_wordlist_2_0.json', but got %s", SetWordList(testValues.first))
+func TestGetWord(t *testing.T) {
+	type args struct {
+		key      int
+		wordlist string
 	}
-	if SetWordList(testValues.second) != config.EffShort1 {
-		t.Errorf("SetWordList() failed expected 'eff_short_wordlist_1.json', but got %s", SetWordList(testValues.second))
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "Success: Retrieves Word From Wordlist",
+			args: args{
+				key:      2251,
+				wordlist: "a",
+			},
+			want: "dandy",
+		},
 	}
-	if SetWordList(testValues.third) != config.EffLarge {
-		t.Errorf("SetWordList() failed expected 'eff_large_wordlist.json', but got %s", SetWordList(testValues.third))
-	}
-	if SetWordList(testValues.fourth) != config.Reinhold {
-		t.Errorf("SetWordList() failed expected 'reinhold_wordlist.json', but got %s", SetWordList(testValues.fourth))
-	}
-	if SetWordList(testValues.fifth) != config.EffShort1 {
-		t.Errorf("SetWordList() failed expected 'eff_short_wordlist_2_0.json', but got %s", SetWordList(testValues.fifth))
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			word := GetWord(tt.args.key, tt.args.wordlist)
+			assert.ObjectsAreEqual("dandy", word)
+		})
 	}
 }
+
+// TODO write TestGetWordList and test the bytes
