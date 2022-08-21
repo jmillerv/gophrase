@@ -60,12 +60,14 @@ https://theworld.com/~reinhold/diceware.html
 https://www.pleacher.com/mp/mlessons/algebra/entropy.html
 
 ### Usage in Production Environments
-This is the use at your own risk warning. As this program uses the math/rand package and not the crypto/rand package, I would avoid production environments because of the possibility of being subject to a [timing attack](https://en.wikipedia.org/wiki/Timing_attack). That being said, security is all about threat models, and most users who need a quick simple password aren't being actively targeted on their machines. 
+This is the use at your own risk warning. 
+
+#### Timing Attack 
+
+As this program uses the math/rand package and not the crypto/rand package, I would avoid production environments because of the possibility of being subject to a [timing attack](https://en.wikipedia.org/wiki/Timing_attack). That being said, security is all about threat models, and most users who need a quick simple password aren't being actively targeted on their machines. 
 
 Replacing the math/rand with crypto/rand isn't out of the picture, it's just not a priority at the moment.
  
-### Roadmap
+#### API/Web Applications 
 
-1. CLI validation
-2. Cleaner CLI command handling
-3. GUI
+The API allows you to both generate a passphrase and submit a passphrase for evaluation on its entropy. This entails sending and recieving data from the server, so proceed with caution. This application does not use cookies or track anything submitted to it, but being aware of how data moves is helpful. 
