@@ -59,6 +59,11 @@ If you don't want numbers or special characters, the other lists should work for
 https://theworld.com/~reinhold/diceware.html  
 https://www.pleacher.com/mp/mlessons/algebra/entropy.html
 
+### Development
+
+#### Justfile
+A [justfile](https://just.systems/man/en/chapter_1.html) is included for running a handful of operations.
+
 ### Usage in Production Environments
 This is the use at your own risk warning. 
 
