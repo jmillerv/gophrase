@@ -4,6 +4,8 @@
 
 CLI diceware passphrase generator written in Go
 
+**This repository has been migrated to https://codeberg.org/jmillerv/gophrase**
+
 ### About Diceware Passwords
 [Diceware](https://en.wikipedia.org/wiki/Diceware) is a method that allows anyone to use ordinary dice to generate an easy to remember passphrase
 from a list of words using only dice. The original creator was Arnold Reinhold. Passwords generated in this
